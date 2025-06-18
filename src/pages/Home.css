@@ -1,0 +1,42 @@
+.home {
+  min-height: 100vh;
+  background-color: #fffbe6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.title {
+  font-size: 2.5rem;
+  color: #cc0000;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.description {
+  font-size: 1.2rem;
+  color: #333;
+  max-width: 600px;
+  margin-bottom: 2rem;
+  font-weight: 400;
+}
+
+.start-button {
+  padding: 0.75rem 2rem;
+  background-color: #cc0000;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.start-button:hover {
+  background-color: #a80000;
+}
