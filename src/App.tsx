@@ -6,6 +6,7 @@ import 'leaflet/dist/leaflet.css';
 import Home from './pages/Home';
 import Mapa from './pages/Mapa';
 import AñadirBar from "./pages/AñadirBar";
+import Bar from './pages/Bar';
 // hooks
 import { useAuth } from "./hooks/useAuth";
 
@@ -29,6 +30,7 @@ const App: React.FC = () => {
           <Route path="/" element={<Home />} />
           <Route path="/mapa" element={<Mapa />} />
           <Route path="/añadir" element={<AñadirBar />} />
+          <Route path="/bar/:id" element={<Bar />} /> {/* 👈 nouvelle route */}
         </Routes>
         <Footer />
         <ToastContainer />

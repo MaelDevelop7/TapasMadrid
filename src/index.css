@@ -1,0 +1,14 @@
+@media (max-width: 600px) {
+  .bar-page {
+    padding: 1rem;
+    margin: 1rem;
+  }
+
+  .bar-page h2 {
+    font-size: 1.5rem;
+  }
+
+  .bar-page p {
+    font-size: 1rem;
+  }
+}
