@@ -10,6 +10,7 @@
   font-family: 'Poppins', sans-serif;
 }
 
+/* Titre principal */
 .title {
   font-size: 2.5rem;
   color: #cc0000;
@@ -17,14 +18,17 @@
   font-weight: 600;
 }
 
+/* Description */
 .description {
   font-size: 1.2rem;
   color: #333;
   max-width: 600px;
   margin-bottom: 2rem;
   font-weight: 400;
+  padding: 0 1rem;
 }
 
+/* Bouton */
 .start-button {
   padding: 0.75rem 2rem;
   background-color: #cc0000;
@@ -39,4 +43,40 @@
 
 .start-button:hover {
   background-color: #a80000;
+}
+
+/* Media Queries pour responsive */
+
+/* Pour écrans moyens / tablettes */
+@media (max-width: 768px) {
+  .title {
+    font-size: 2.2rem;
+  }
+  .description {
+    font-size: 1.1rem;
+    max-width: 500px;
+  }
+  .start-button {
+    padding: 0.65rem 1.8rem;
+    font-size: 0.95rem;
+  }
+}
+
+/* Pour petits écrans / mobiles */
+@media (max-width: 480px) {
+  .home {
+    padding: 1.5rem 1rem;
+  }
+  .title {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+  }
+  .description {
+    font-size: 1rem;
+    max-width: 100%;
+  }
+  .start-button {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.9rem;
+  }
 }

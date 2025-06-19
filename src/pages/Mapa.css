@@ -1,0 +1,74 @@
+/* Conteneur principal */
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #fffbe6;
+}
+
+/* Titre */
+.title {
+  text-align: center;
+  margin: 1rem 0;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 1.8rem;
+  color: #cc0000;
+  padding: 0 1rem;
+}
+
+/* Zone de la carte */
+.map {
+  flex-grow: 1;
+  width: 100%;
+}
+
+/* Lien de retour */
+.back-link {
+  text-align: center;
+  padding: 1rem;
+  background-color: #eee;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  color: #cc0000;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.back-link:hover {
+  background-color: #ddd;
+}
+
+/* Ajustements responsive */
+
+/* Tablettes / écrans moyens */
+@media (max-width: 768px) {
+  .title {
+    font-size: 1.6rem;
+    margin: 0.75rem 0;
+  }
+  .back-link {
+    padding: 0.85rem;
+    font-size: 0.95rem;
+  }
+}
+
+/* Mobiles */
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.4rem;
+    margin: 0.5rem 0;
+  }
+  .back-link {
+    padding: 0.7rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Assurer que Leaflet prend bien tout l’espace */
+.map iframe,
+.map .leaflet-container {
+  height: 100%;
+  width: 100%;
+}
