@@ -12,3 +12,66 @@
     font-size: 1rem;
   }
 }
+/* Mode sombre global */
+.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+/* Fond principal clair et texte bien contrasté */
+.dark-mode .home,
+.dark-mode .settings-page,
+.dark-mode .container,
+.dark-mode .bar-page {
+  background-color: #181818;
+  color: #eaeaea;
+}
+
+/* Boutons */
+.dark-mode .start-button,
+.dark-mode .goSetting,
+.dark-mode .setting button {
+  background-color: #2d2d2d;
+  color: #ffffff;
+  border: none;
+}
+
+.dark-mode .start-button:hover,
+.dark-mode .goSetting:hover,
+.dark-mode .setting button:hover {
+  background-color: #444;
+}
+
+/* Champs de formulaire */
+.dark-mode input,
+.dark-mode textarea {
+  background-color: #2a2a2a;
+  color: #f0f0f0;
+  border: 1px solid #666;
+  caret-color: #fff;
+}
+
+.dark-mode input::placeholder,
+.dark-mode textarea::placeholder {
+  color: #bbb;
+}
+
+/* Commentaires et note */
+.dark-mode .star {
+  color: #888;
+}
+
+.dark-mode .star.active,
+.dark-mode .star.half {
+  color: gold;
+}
+/* Transition douce sur tous les éléments */
+body, .home, .settings-page, .container, .bar-page,
+input, textarea, button {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.star,
+.start-button img,
+.goSetting img {
+  transition: transform 0.2s ease, color 0.3s ease, filter 0.3s ease;
+}

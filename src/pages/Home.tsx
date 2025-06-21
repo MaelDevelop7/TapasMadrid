@@ -1,7 +1,8 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import './Home.css'
-
+import mas from '../assets/añadir.png';
+import settingsIcon from '../assets/settings.png';
 const Home: React.FC = () => {
   const navigate = useNavigate()
 
@@ -11,6 +12,9 @@ const Home: React.FC = () => {
   const handleAdd = () => {
     navigate('/añadir')
   }
+  const handleSett = () => {
+    navigate('/settings')
+  } 
 
   return (
     <div className="home">
@@ -22,8 +26,8 @@ const Home: React.FC = () => {
         Empezar
       </button>
       <br />
-      <button className='start-button' onClick={handleAdd}>Añadir bars</button>
-      
+      <button className='start-button' onClick={handleAdd}><img src={mas} alt="icon +" /></button>
+      <button className='goSetting' onClick={handleSett}><img src={settingsIcon} alt="settings" /></button>
     </div>
   )
 }

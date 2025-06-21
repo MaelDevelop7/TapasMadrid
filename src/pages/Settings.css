@@ -1,0 +1,39 @@
+.settings-page {
+  padding: 2rem;
+  max-width: 600px;
+  margin: auto;
+  text-align: left;
+}
+
+.settings-page h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.setting {
+  margin-bottom: 1.2rem;
+  font-size: 1.1rem;
+}
+
+.setting button {
+  padding: 0.5rem 1rem;
+  background-color: #cc0000;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.setting button:hover {
+  background-color: #a80000;
+}
+
+.setting input[type="checkbox"] {
+  margin-right: 0.5rem;
+}
+
+.setting.small {
+  font-size: 0.9rem;
+  color: #666;
+}
