@@ -1,6 +1,6 @@
 const companyName : string = "Mael Develop";
-const versionTag: number = 1.0;
-let isStable: boolean = false;
+const versionTag: number = 2.0;
+let isStable: boolean = true;
 let year: number = new Date().getFullYear();
 
 
@@ -16,4 +16,4 @@ function checkStable(){
 const credits = ` ${year}, ${companyName} in version ${versionTag} ${checkStable()}`
 
 
-export { credits }
+export { credits, versionTag }

@@ -124,3 +124,190 @@
   width: 50%;
   overflow: hidden;
 }
+.ambiance-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  justify-content: center;
+}
+
+.ambiance-buttons button {
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  border: none;
+  background-color: #cc0000;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.ambiance-buttons button:hover {
+  background-color: #a80000;
+  transform: translateY(-2px);
+}
+
+.ambiance-buttons button:disabled {
+  background-color: #888;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Mode sombre */
+.dark-mode .ambiance-buttons button {
+  background-color: #444;
+  color: #fff;
+}
+
+.dark-mode .ambiance-buttons button:hover {
+  background-color: #666;
+}
+.dominant-ambiance {
+  margin: 1rem auto;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.tag {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-weight: bold;
+  color: white;
+  margin-left: 0.5rem;
+}
+
+.tag-calme    { background-color: #6c757d; }
+.tag-musique  { background-color: #007bff; }
+.tag-ambiance { background-color: #28a745; }
+.tag-fiesta   { background-color: #fd7e14; }
+.tag-blinde   { background-color: #dc3545; }
+
+.dark-mode .tag {
+  opacity: 0.95;
+}
+.dominant-ambiance, .bar-page h3 {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.bar-page canvas {
+  display: block;
+  margin: 0 auto;
+  max-width: 300px;
+}
+/* Mobile first - style général déjà adapté */
+
+/* Pour écrans à partir de 600px (tablettes et plus) */
+@media (min-width: 600px) {
+  .bar-page {
+    max-width: 700px;
+    margin: 1rem auto;
+    padding: 1rem 2rem;
+  }
+
+  .comment-form textarea {
+    min-height: 120px;
+    font-size: 1rem;
+  }
+
+  .ambiance-buttons button {
+    padding: 0.5rem 1rem;
+    font-size: 1.1rem;
+  }
+
+  ul {
+    font-size: 1.1rem;
+  }
+}
+
+/* Pour écrans à partir de 900px (desktop) */
+@media (min-width: 900px) {
+  .bar-page {
+    max-width: 900px;
+    padding: 2rem 3rem;
+  }
+
+  .comment-form textarea {
+    min-height: 150px;
+    font-size: 1.15rem;
+  }
+
+  .ambiance-buttons button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.2rem;
+  }
+
+  ul {
+    font-size: 1.15rem;
+  }
+}
+
+/* Améliorations générales */
+
+.bar-page {
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.rating,
+.dominant-ambiance {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ambiance-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.ambiance-buttons button {
+  flex: 1 1 auto;
+  min-width: 100px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.ambiance-buttons button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.bar-page button {
+  background-color: #cc0000;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  margin-top: 1rem;
+}
+
+.bar-page button:hover {
+  background-color: #a80000;
+  transform: scale(1.03);
+}
+
+.bar-page button:active {
+  transform: scale(0.97);
+}
+
+@media (max-width: 600px) {
+  .bar-page button {
+    width: 100%;
+    font-size: 1rem;
+  }
+}

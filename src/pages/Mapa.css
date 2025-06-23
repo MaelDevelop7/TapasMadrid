@@ -23,21 +23,38 @@
   width: 100%;
 }
 
-/* Lien de retour */
+/* Lien de retour amélioré */
 .back-link {
+  display: inline-block;
   text-align: center;
-  padding: 1rem;
-  background-color: #eee;
+  padding: 0.75rem 1.5rem;
+  margin: 1rem auto;
+  background-color: #fce8e6;
+  border: 2px solid #cc0000;
+  border-radius: 8px;
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
   color: #cc0000;
   text-decoration: none;
-  transition: background-color 0.3s ease;
-  cursor: pointer;
+  transition: all 0.2s ease-in-out;
 }
 
 .back-link:hover {
-  background-color: #ddd;
+  background-color: #cc0000;
+  color: #ffffff;
+  transform: scale(1.03);
+}
+
+.back-link:active {
+  transform: scale(0.97);
+}
+
+@media (max-width: 600px) {
+  .back-link {
+    width: 100%;
+    text-align: center;
+    font-size: 1rem;
+  }
 }
 
 /* Ajustements responsive */

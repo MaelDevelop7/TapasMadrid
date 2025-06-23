@@ -5,6 +5,7 @@ import { db } from '../services/firebase';
 import { Link } from 'react-router-dom';
 import L from 'leaflet';
 import './Mapa.css';
+import Header from '../components/Header';
 
 type Bar = {
   id: string;
@@ -57,6 +58,7 @@ const Mapa: React.FC = () => {
 
   return (
     <div className="container">
+      <Header />
       <h2 className="title">Mapa de bares en Madrid</h2>
       <div className="map">
         <MapContainer center={madrid} zoom={13} style={{ height: '100%', width: '100%' }}>
@@ -81,7 +83,7 @@ const Mapa: React.FC = () => {
       <Link to="/" className="back-link">
         Volver al inicio
       </Link>
-    </div>
+  </div>
   );
 };
 

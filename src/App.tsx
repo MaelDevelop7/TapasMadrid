@@ -14,6 +14,7 @@ import { useAuth } from "./hooks/useAuth";
 import Footer from './components/Footer';
 import { ToastContainer } from 'react-toastify';
 import Settings from './pages/Settings';
+import About from './pages/About';
 
 
 const App: React.FC = () => {
@@ -33,6 +34,7 @@ const App: React.FC = () => {
           <Route path="/añadir" element={<AñadirBar />} />
           <Route path="/bar/:id" element={<Bar />} /> {/* 👈 nouvelle route */}
           <Route path='/settings' element={<Settings/> } />  
+          <Route path='/about' element={<About/> } />
         </Routes>
         <Footer />
         <ToastContainer />
