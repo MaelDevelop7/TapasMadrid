@@ -17,16 +17,23 @@ export function useAuth() {
           uid: firebaseUser.uid,
           isAnonymous: firebaseUser.isAnonymous,
         });
+        setLoading(false);
       } else {
-        setUser(null);
+        // Pas d’utilisateur connecté, alors on essaie la connexion anonyme
+        signInAnonymously(auth)
+          .then((cred) => {
+            setUser({
+              uid: cred.user.uid,
+              isAnonymous: true,
+            });
+            setLoading(false);
+          })
+          .catch((error) => {
+            console.error("Erreur lors de la connexion anonyme", error);
+            setUser(null);
+            setLoading(false);
+          });
       }
-      setLoading(false);
-    });
-
-    // Essayer de connecter anonymement au démarrage
-    signInAnonymously(auth).catch((error) => {
-      console.error("Erreur lors de la connexion anonyme", error);
-      setLoading(false);
     });
 
     return () => unsubscribe();

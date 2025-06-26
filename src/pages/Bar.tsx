@@ -94,13 +94,23 @@ const Bar: React.FC = () => {
     }
 
     try {
+      let pseudo = "Anónimo";
+      if (user?.uid) {
+        const userRef = doc(db, 'users', user.uid);
+        const userSnap = await getDoc(userRef);
+        if (userSnap.exists()) {
+          pseudo = userSnap.data().pseudo || "Anónimo";
+        }
+      }
+
       await addDoc(collection(db, `bars/${id}/comments`), {
         uid: user?.uid || "anon",
-        nom: "Anónimo",
+        nom: pseudo,
         message: mensaje,
         rating: calificacion,
         timestamp: serverTimestamp()
       });
+
       setMensaje('');
       setCalificacion(0);
     } catch (error) {

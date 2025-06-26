@@ -15,13 +15,16 @@ import Footer from './components/Footer';
 import { ToastContainer } from 'react-toastify';
 import Settings from './pages/Settings';
 import About from './pages/About';
+import Abonnement from './pages/Abonnement';
+import { PrivateRoute } from './hooks/PrivateRoutes';
+import Login from './pages/Login';
 
 
 const App: React.FC = () => {
   const { user, loading } = useAuth();
 
   if (loading) return <p>Cargando...</p>;
-  if (!user) return <p>Problema con la autenticación</p>;
+  if (!user) return <p>Problema de authentificación</p>;
   console.log(`Conectado anónimamente con UID ${user.uid}`)
 
   return (
@@ -35,6 +38,10 @@ const App: React.FC = () => {
           <Route path="/bar/:id" element={<Bar />} /> {/* 👈 nouvelle route */}
           <Route path='/settings' element={<Settings/> } />  
           <Route path='/about' element={<About/> } />
+          <Route path='/abonnement' element={<PrivateRoute>
+            <Abonnement />
+          </PrivateRoute> } />
+          <Route path='/login' element={<Login />} />
         </Routes>
         <Footer />
         <ToastContainer />

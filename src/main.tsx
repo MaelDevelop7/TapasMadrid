@@ -4,12 +4,15 @@ import App from './App'
 import './index.css' // CSS global si tu veux en ajouter
 import 'react-toastify/dist/ReactToastify.css';
 import { registerSW } from 'virtual:pwa-register';
+import { AuthProvider } from './context/AuthContext';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <App />
+    <AuthProvider>
+      <App />
+    </AuthProvider>
   </React.StrictMode>
-)
+);
 
 registerSW({
   onNeedRefresh() {
