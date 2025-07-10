@@ -12,7 +12,7 @@ const pricingData = [
   },
   {
     level: "Premium",
-    price: "5 € / mes",
+    price: "2 € / mes",
     benefits: [
       "Accès complet",
       "5 votes cada 30 minutos",
@@ -22,7 +22,7 @@ const pricingData = [
   },
   {
     level: "VIP",
-    price: "10,00 € / mes",
+    price: "5 € / mes",
     benefits: [
       "Accès illimité",
       "10 votes cada 30 minutos",
