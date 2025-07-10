@@ -8,8 +8,13 @@ import {
   getDocs,
   Timestamp,
 } from 'firebase/firestore';
+import { VOTE_LIMIT_MINUTES, VOTE_LIMITS_BY_SUBSCRIPTION } from '../config';
 
-export const useVote = (barId: string, uid: string) => {
+export const useVote = (
+  barId: string,
+  uid: string,
+  subscriptionStatus: 'free' | 'premium' = 'free' // nouveau paramètre
+) => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -19,18 +24,23 @@ export const useVote = (barId: string, uid: string) => {
 
     try {
       const votesRef = collection(db, `bars/${barId}/ambianceVotes`);
-      const thirtyMinutesAgo = Timestamp.fromDate(new Date(Date.now() - 30 * 60 * 1000));
 
+      const voteLimitCount = VOTE_LIMITS_BY_SUBSCRIPTION[subscriptionStatus] || 1;
+      const timeLimit = VOTE_LIMIT_MINUTES;
+
+      const sinceTimestamp = Timestamp.fromDate(new Date(Date.now() - timeLimit * 60 * 1000));
+
+      // Requête pour récupérer les votes récents de l'utilisateur
       const q = query(
         votesRef,
         where('uid', '==', uid),
-        where('timestamp', '>', thirtyMinutesAgo)
+        where('timestamp', '>', sinceTimestamp)
       );
 
       const snap = await getDocs(q);
 
-      if (!snap.empty) {
-        setError('Ya has votado en los últimos 30 minutos.');
+      if (snap.size >= voteLimitCount) {
+        setError(`Ya has votado el límite permitido (${voteLimitCount}) en los últimos ${timeLimit} minutos.`);
         return false;
       }
 

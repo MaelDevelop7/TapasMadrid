@@ -3,11 +3,16 @@ import { useAuth } from "../hooks/useAuth";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../services/firebase";
 import { useNavigate } from "react-router-dom";
+import Header from "../components/Header";
+import SubscriptionPricing from '../components/PricingData';
+
+type SubscriptionStatus = "free" | "premium" | "vip";
 
 const Abonnement: React.FC = () => {
   const { user, loading } = useAuth();
   const navigate = useNavigate();
-  const [subscriptionStatus, setSubscriptionStatus] = useState<"free" | "premium">("free");
+
+  const [subscriptionStatus, setSubscriptionStatus] = useState<SubscriptionStatus>("free");
   const [subscriptionEnd, setSubscriptionEnd] = useState<Date | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loadingSub, setLoadingSub] = useState(true);
@@ -22,13 +27,14 @@ const Abonnement: React.FC = () => {
           const docSnap = await getDoc(userRef);
 
           if (docSnap.exists()) {
-            const data = docSnap.data();
+            const data = docSnap.data(); 
             if (data.subscriptionEnd && data.subscriptionEnd.toDate) {
               const endDate = data.subscriptionEnd.toDate();
               setSubscriptionEnd(endDate);
               if (endDate > new Date()) {
                 setSubscriptionStatus(data.subscriptionStatus || "free");
               } else {
+                // L'abonnement est expiré, remise à free
                 await updateDoc(userRef, {
                   subscriptionStatus: "free",
                   subscriptionEnd: null,
@@ -80,6 +86,29 @@ const Abonnement: React.FC = () => {
     }
   };
 
+  const upgradeToVIP = async () => {
+    if (!user) return;
+    setProcessing(true);
+    try {
+      const userRef = doc(db, "users", user.uid);
+      const now = new Date();
+      const newEnd = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000); // 30 días
+      await updateDoc(userRef, {
+        subscriptionStatus: "vip",
+        subscriptionStart: now,
+        subscriptionEnd: newEnd,
+      });
+      setSubscriptionStatus("vip");
+      setSubscriptionEnd(newEnd);
+      setError(null);
+    } catch (e: any) {
+      setError("Error al actualizar la suscripción");
+      console.error(e);
+    } finally {
+      setProcessing(false);
+    }
+  };
+
   const downgradeToFree = async () => {
     if (!user) return;
     setProcessing(true);
@@ -105,37 +134,49 @@ const Abonnement: React.FC = () => {
   if (!user) return <div>Usuario no conectado.</div>;
 
   return (
-    <div style={{ padding: 20 }}>
-      <h1>Suscripción del usuario</h1>
-      <p>UID: {user.uid}</p>
-      <p>
-        Estado: <strong>{subscriptionStatus.toUpperCase()}</strong>
-      </p>
-      {subscriptionStatus === "premium" && subscriptionEnd && (
-        <p>Fecha de expiración: {subscriptionEnd.toLocaleDateString()}</p>
-      )}
+    <>
+      <br />
+      <Header />
+      <div style={{ padding: 20 }}>
+        <h1>Suscripción del usuario</h1>
+        <p>UID: {user.uid}</p>
 
-      {error && <p style={{ color: "red" }}>{error}</p>}
+        <p>
+          Estado: <strong>{subscriptionStatus.toUpperCase()}</strong>
+        </p>
+        {(subscriptionStatus === "premium" || subscriptionStatus === "vip") && subscriptionEnd && (
+          <p>Fecha de expiración: {subscriptionEnd.toLocaleDateString()}</p>
+        )}
 
-      {subscriptionStatus === "free" && (
-        <button onClick={upgradeToPremium} disabled={processing}>
-          {processing ? "Procesando..." : "Pasar a Premium (30 días)"}
+        {error && <p style={{ color: "red" }}>{error}</p>}
+
+        {subscriptionStatus === "free" && (
+          <>
+            <button onClick={upgradeToPremium} disabled={processing}>
+              {processing ? "Procesando..." : "Pasar a Premium (30 días)"}
+            </button>
+            <br />
+            <button onClick={upgradeToVIP} disabled={processing} style={{ marginTop: 10 }}>
+              {processing ? "Procesando..." : "Pasar a VIP (30 días)"}
+            </button>
+          </>
+        )}
+
+        {(subscriptionStatus === "premium" || subscriptionStatus === "vip") && (
+          <button onClick={downgradeToFree} disabled={processing} style={{ marginTop: 10 }}>
+            {processing ? "Procesando..." : "Volver a estado Free"}
+          </button>
+        )}
+        <SubscriptionPricing/>
+
+        <button
+          onClick={() => navigate("/")}
+          style={{ marginTop: 20, display: "block" }}
+        >
+          Volver al inicio
         </button>
-      )}
-
-      {subscriptionStatus === "premium" && (
-        <button onClick={downgradeToFree} disabled={processing} style={{ marginTop: 10 }}>
-          {processing ? "Procesando..." : "Volver a estado Free"}
-        </button>
-      )}
-
-      <button
-        onClick={() => navigate("/")}
-        style={{ marginTop: 20, display: "block" }}
-      >
-        Volver al inicio
-      </button>
-    </div>
+      </div>
+    </>
   );
 };
 

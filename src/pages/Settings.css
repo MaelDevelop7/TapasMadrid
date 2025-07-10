@@ -1,39 +1,49 @@
 .settings-page {
-  padding: 2rem;
-  max-width: 600px;
-  margin: auto;
-  text-align: left;
-}
-
-.settings-page h2 {
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background-color: #fdfdfd;
+  border-radius: 12px;
+  font-family: "Segoe UI", sans-serif;
 }
 
 .setting {
-  margin-bottom: 1.2rem;
+  margin: 1rem 0;
   font-size: 1.1rem;
 }
 
-.setting button {
-  padding: 0.5rem 1rem;
-  background-color: #cc0000;
+.pseudo-input {
+  margin-left: 8px;
+  padding: 0.4rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.save-button {
+  margin-left: 8px;
+  background-color: #007bff;
   color: white;
   border: none;
-  border-radius: 10px;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.3s;
 }
 
-.setting button:hover {
-  background-color: #a80000;
+.save-success {
+  color: green;
+  margin-left: 10px;
 }
 
-.setting input[type="checkbox"] {
-  margin-right: 0.5rem;
+.logout-button {
+  background-color: #e53e3e;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
-.setting.small {
-  font-size: 0.9rem;
-  color: #666;
+.vote-limit {
+  font-style: italic;
+  color: #444;
 }

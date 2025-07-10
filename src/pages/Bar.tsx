@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import AmbianceChart from '../components/AmbianceChart';
 import Header from '../components/Header';
+import '../components/Header.css';
 import {
   collection,
   doc,
@@ -161,7 +162,7 @@ const Bar: React.FC = () => {
 
       {Object.keys(conteoVotos).length > 0 && (
         <>
-          <h3 style={{ textAlign: 'center' }}>Distribución de votos de ambiente:</h3>
+          <h3 className="title-center">Distribución de votos de ambiente:</h3>
           <AmbianceChart votes={conteoVotos} />
         </>
       )}
@@ -179,8 +180,8 @@ const Bar: React.FC = () => {
         ) : (
           <>
             {renderStarsFromNote(parseFloat(promedio))}
-            <span style={{ marginLeft: '0.5rem' }}>({promedio} / 5)</span>
-            <span style={{ marginLeft: '0.5rem', fontSize: '1rem' }}>
+            <span className="note-value">({promedio} / 5)</span>
+            <span className="comment-count">
               • {comentarios.length} {comentarios.length === 1 ? 'comentario' : 'comentarios'}
             </span>
           </>

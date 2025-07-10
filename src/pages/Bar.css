@@ -6,6 +6,8 @@
   border-radius: 12px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   font-family: "Segoe UI", sans-serif;
+  padding: 1rem;
+  box-sizing: border-box;
 }
 
 .bar-page h2 {
@@ -24,6 +26,10 @@
   margin-bottom: 1rem;
   font-size: 1.4rem;
   color: #333;
+}
+
+.title-center {
+  text-align: center;
 }
 
 .bar-page ul {
@@ -47,6 +53,7 @@
   color: #222;
   margin-bottom: 0.25rem;
 }
+
 .comment-form {
   margin-top: 1.5rem;
   display: flex;
@@ -80,6 +87,39 @@
   color: #f5b301;
 }
 
+.rating {
+  font-size: 1.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.rating .star.half {
+  position: relative;
+}
+
+.rating .star.half::after {
+  content: "★";
+  color: #ccc;
+  position: absolute;
+  left: 50%;
+  width: 50%;
+  overflow: hidden;
+}
+
+.note-value {
+  margin-left: 0.5rem;
+  font-size: 1rem;
+}
+
+.comment-count {
+  margin-left: 0.5rem;
+  font-size: 1rem;
+  color: #666;
+}
+
 .comment-form button {
   align-self: flex-start;
   background-color: #cc0000;
@@ -95,35 +135,7 @@
 .comment-form button:hover {
   background-color: #a80000;
 }
-.rating {
-  font-size: 1.6rem;
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  margin-bottom: 1rem;
-}
 
-.rating .star {
-  color: #ccc;
-}
-
-.rating .star.active {
-  color: #f5b301;
-}
-
-.rating .star.half {
-  color: #f5b301;
-  position: relative;
-}
-
-.rating .star.half::after {
-  content: "★";
-  color: #ccc;
-  position: absolute;
-  left: 50%;
-  width: 50%;
-  overflow: hidden;
-}
 .ambiance-buttons {
   display: flex;
   flex-wrap: wrap;
@@ -145,6 +157,8 @@
   align-items: center;
   gap: 0.5rem;
   box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  flex: 1 1 auto;
+  min-width: 100px;
 }
 
 .ambiance-buttons button:hover {
@@ -167,10 +181,16 @@
 .dark-mode .ambiance-buttons button:hover {
   background-color: #666;
 }
+
 .dominant-ambiance {
   margin: 1rem auto;
   font-size: 1.1rem;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
 .tag {
@@ -182,18 +202,14 @@
   margin-left: 0.5rem;
 }
 
-.tag-calme    { background-color: #6c757d; }
-.tag-musique  { background-color: #007bff; }
-.tag-ambiance { background-color: #28a745; }
+.tag-calma    { background-color: #6c757d; }
+.tag-musica   { background-color: #007bff; }
+.tag-ambiente { background-color: #28a745; }
 .tag-fiesta   { background-color: #fd7e14; }
-.tag-blinde   { background-color: #dc3545; }
+.tag-lleno    { background-color: #dc3545; }
 
 .dark-mode .tag {
   opacity: 0.95;
-}
-.dominant-ambiance, .bar-page h3 {
-  margin-top: 1rem;
-  text-align: center;
 }
 
 .bar-page canvas {
@@ -201,9 +217,8 @@
   margin: 0 auto;
   max-width: 300px;
 }
-/* Mobile first - style général déjà adapté */
 
-/* Pour écrans à partir de 600px (tablettes et plus) */
+/* Responsive */
 @media (min-width: 600px) {
   .bar-page {
     max-width: 700px;
@@ -226,7 +241,6 @@
   }
 }
 
-/* Pour écrans à partir de 900px (desktop) */
 @media (min-width: 900px) {
   .bar-page {
     max-width: 900px;
@@ -248,41 +262,6 @@
   }
 }
 
-/* Améliorations générales */
-
-.bar-page {
-  padding: 1rem;
-  box-sizing: border-box;
-}
-
-.rating,
-.dominant-ambiance {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.ambiance-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 1rem;
-}
-
-.ambiance-buttons button {
-  flex: 1 1 auto;
-  min-width: 100px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.ambiance-buttons button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
 .bar-page button {
   background-color: #cc0000;
   color: white;

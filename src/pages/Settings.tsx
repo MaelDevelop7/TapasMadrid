@@ -6,6 +6,7 @@ import Header from '../components/Header';
 import { getAuth, signOut } from 'firebase/auth';
 import { db } from '../services/firebase';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { VOTE_LIMIT_MINUTES, VOTE_LIMITS_BY_SUBSCRIPTION } from '../config';
 
 const Settings: React.FC = () => {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ const Settings: React.FC = () => {
     localStorage.getItem('darkMode') === 'true'
   );
   const [pseudo, setPseudo] = useState('');
+  const [subscription, setSubscription] = useState('free'); // état abonnement
   const [saved, setSaved] = useState(false);
 
   const goHome = () => {
@@ -58,17 +60,21 @@ const Settings: React.FC = () => {
   }, [darkMode]);
 
   useEffect(() => {
-    // Charger le pseudo existant au démarrage
-    const fetchPseudo = async () => {
+    const fetchUserData = async () => {
       if (!auth.currentUser) return;
       const userRef = doc(db, 'users', auth.currentUser.uid);
       const docSnap = await getDoc(userRef);
       if (docSnap.exists()) {
-        setPseudo(docSnap.data().pseudo || '');
+        const data = docSnap.data();
+        setPseudo(data.pseudo || '');
+        // IMPORTANT : récupère subscriptionStatus (clé exacte dans ta base)
+        setSubscription(data.subscriptionStatus || 'free');
       }
     };
-    fetchPseudo();
+    fetchUserData();
   }, [auth.currentUser]);
+
+  const maxVotes = VOTE_LIMITS_BY_SUBSCRIPTION[subscription] ?? 1;
 
   return (
     <div className="settings-page">
@@ -89,11 +95,17 @@ const Settings: React.FC = () => {
             type="text"
             value={pseudo}
             onChange={(e) => setPseudo(e.target.value)}
-            style={{ marginLeft: 8 }}
+            className="pseudo-input"
           />
         </label>
-        <button onClick={handleSavePseudo} style={{ marginLeft: 8 }}>Guardar</button>
-        {saved && <span style={{ color: 'green', marginLeft: 10 }}>✔️ Guardado</span>}
+        <button className="save-button" onClick={handleSavePseudo}>Guardar</button>
+        {saved && <span className="save-success">✔️ Guardado</span>}
+      </div>
+
+      <div className="setting">
+        <p className="vote-limit">
+          🗳️ Límite de voto de ambiente: {maxVotes} voto(s) cada {VOTE_LIMIT_MINUTES} minutos (plan {subscription})
+        </p>
       </div>
 
       <div className="setting">
@@ -101,7 +113,7 @@ const Settings: React.FC = () => {
       </div>
 
       <div className="setting">
-        <button onClick={handleLogout} style={{ backgroundColor: '#e53e3e', color: 'white' }}>
+        <button className="logout-button" onClick={handleLogout}>
           🔒 Cerrar sesión
         </button>
       </div>
