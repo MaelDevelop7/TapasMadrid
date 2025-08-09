@@ -13,7 +13,10 @@ const Header: React.FC = () => {
                         <li><Link to="/mapa">Mapa</Link></li>
                         <li><Link to="/settings">Ajustes</Link></li>
                         <li><Link to="/about">Sobre nosotros</Link></li>
-                        <li><Link to="/abonnement">Abonnement</Link></li>
+                        <li><Link to="/abonnement">Subscription</Link></li>
+                        <li><Link to="/tapeo">¿Qué es el Tapeo?</Link></li>
+                        <li><Link to="/perfil">Perfil</Link></li>
+
                     </ul>
                 </nav>
             </div>

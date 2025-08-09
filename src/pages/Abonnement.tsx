@@ -5,8 +5,8 @@ import { db } from "../services/firebase";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import SubscriptionPricing from '../components/PricingData';
+import type { SubscriptionStatus } from "../types/SubscriptionStatus";
 
-type SubscriptionStatus = "free" | "premium" | "vip";
 
 const Abonnement: React.FC = () => {
   const { user, loading } = useAuth();

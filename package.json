@@ -12,6 +12,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@capacitor/android": "^7.4.2",
+    "@capacitor/cli": "^7.4.2",
+    "@capacitor/core": "^7.4.2",
     "chart.js": "^4.5.0",
     "firebase": "^11.9.1",
     "gh-pages": "^6.3.0",

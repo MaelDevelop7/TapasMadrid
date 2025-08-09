@@ -7,8 +7,10 @@ import Home from './pages/Home';
 import Mapa from './pages/Mapa';
 import AñadirBar from "./pages/AñadirBar";
 import Bar from './pages/Bar';
+import Tapeo from './pages/Tapeo';
 // hooks
 import { useAuth } from "./hooks/useAuth";
+import Perfil from './pages/Perfil';
 
 // components
 import Footer from './components/Footer';
@@ -42,6 +44,9 @@ const App: React.FC = () => {
             <Abonnement />
           </PrivateRoute> } />
           <Route path='/login' element={<Login />} />
+          <Route path="/tapeo" element={<Tapeo />} />
+          <Route path='/perfil' element={<Perfil/>} />
+
         </Routes>
         <Footer />
         <ToastContainer />

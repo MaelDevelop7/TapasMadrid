@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">tapasradar</string>
+    <string name="title_activity_main">tapasradar</string>
+    <string name="package_name">com.maeldeveloppement.tapasradar</string>
+    <string name="custom_url_scheme">com.maeldeveloppement.tapasradar</string>
+</resources>
